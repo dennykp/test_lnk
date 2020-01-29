@@ -39,6 +39,43 @@
                   </div>
                   </div>
                   <div class="card-body">
+                    <form action="{{url('post-registration')}}" method="POST" id="regForm">
+                 {{ csrf_field() }}
+                 @if (Session::get('email_to'))
+                  {{ Session::get('email_to') }}
+                  @else
+                  {{ "" }}
+                 @endif
+                <div class="form-label-group">
+                  <input type="text" id="inputName" name="name" class="form-control" placeholder="Full name" autofocus>
+                  <label for="inputName">Username</label>
+              
+                  @if ($errors->has('name'))
+                  <span class="error">{{ $errors->first('name') }}</span>
+                  @endif       
+ 
+                </div> 
+                <div class="form-label-group">
+                  <input type="email" name="email" id="inputEmail" class="form-control" placeholder="Email address" >
+                  <label for="inputEmail">Email address</label>
+ 
+                  @if ($errors->has('email'))
+                  <span class="error">{{ $errors->first('email') }}</span>
+                  @endif    
+                </div> 
+ 
+                <div class="form-label-group">
+                  <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password">
+                  <label for="inputPassword">Password</label>
+                   
+                  @if ($errors->has('password'))
+                  <span class="error">{{ $errors->first('password') }}</span>
+                  @endif  
+                </div>
+ 
+                <button class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2" type="submit">Send Email</button>
+                
+              </form>
                     <a class="small" href="{{url('logout')}}">Logout</a>
                   </div>
               </div>
