@@ -1,0 +1,47 @@
+
+Deprecated: The each() function is deprecated. This message will be suppressed on further calls in C:\Users\ACER\AppData\Roaming\Sublime Text 3\Packages\PHPTools\php.tools\codeFormatter.php on line 54
+<?php
+
+namespace App\Console;
+
+use Illuminate\Console\Scheduling\Schedule;
+use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+
+class Kernel extends ConsoleKernel {
+	/**
+	 * The Artisan commands provided by your application.
+	 *
+	 * @var array
+	 */
+	protected $commands = [
+		//
+	];
+	protected $middleware = [
+		'disablepreventback' => \App\Http\Middleware\DisablePreventBack::class ,
+	];
+	protected $routeMiddleware = [
+		'disablepreventback' => App\Http\Middleware\DisablePreventBack::class ,
+	];
+
+	/**
+	 * Define the application's command schedule.
+	 *
+	 * @param  \Illuminate\Console\Scheduling\Schedule  $schedule
+	 * @return void
+	 */
+	protected function schedule(Schedule $schedule) {
+		// $schedule->command('inspire')
+		//          ->hourly();
+	}
+
+	/**
+	 * Register the commands for the application.
+	 *
+	 * @return void
+	 */
+	protected function commands() {
+		$this->load(__DIR__ .'/Commands');
+
+		require base_path('routes/console.php');
+	}
+}
